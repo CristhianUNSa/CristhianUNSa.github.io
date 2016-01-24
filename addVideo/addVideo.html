@@ -1,0 +1,62 @@
+<html lang="en">
+ 
+<head>
+ 
+    <title></title>
+ 
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="blog.css" rel="stylesheet">
+ 
+ 
+</head>
+ 
+<body ng-controller="AddVideoCtrl">
+    <div class="container">
+ 
+        <form class="form-horizontal" ng-submit="AgregarVideo()">
+            <fieldset>
+ 
+                <!-- Form Name -->
+                <legend>Agregar Video</legend>
+ 
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="txtTitle">Titulo</label>
+                    <div class="col-md-4">
+                        <input id="txtTitle" ng-model="video.titulo" name="txtTitle" type="text" placeholder="Titulo" class="form-control input-md">
+ 
+                    </div>
+                </div>
+ 
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="txtPost">Id del video de youtube</label>
+                    <div class="col-md-4">
+                        <input placeholder="Url" ng-model="video.urlVideo" class="form-control" id="txtPost" name="txtPost">
+                    </div>
+                </div>
+ 
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton"></label>
+                    <div class="col-md-4">
+                        <input id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit" value="Agregar" ng-disabled="!video.titulo || !video.urlVideo" />
+                    </div>
+                </div>
+ 
+            </fieldset>
+        </form>
+ 
+ 
+    </div>
+    <!-- /.container -->
+ 
+    <div class="blog-footer">
+        <p>App para Luis</p>
+ 
+    </div>
+ 
+</body>
+ 
+</html>

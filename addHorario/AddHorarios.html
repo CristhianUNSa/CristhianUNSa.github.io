@@ -1,0 +1,128 @@
+<html lang="en">
+ 
+<head>
+ 
+    <title></title>
+ 
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="blog.css" rel="stylesheet">
+ 
+ 
+</head>
+ 
+<body ng-controller="AddHorariosCtrl">
+    <div class="container">
+ 
+        <form class="form-horizontal" ng-submit="AgregarHorarios()">
+                        
+            <fieldset>
+ 
+                <!-- Form Name -->
+                <legend>Agregar Horarios</legend>
+                    
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="txtTitle">Dia</label>
+                    <div class="col-md-4">
+                        <select name="Dias" ng-model="horario.dia" class="form-control">
+                        <option value="Lunes">Lunes</option>
+                        <option value="Martes">Martes</option>
+                        <option value="Miercoles">Miercoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                        </select>
+                    </div>
+                </div>
+ 
+                <!-- Hora entrada-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="txtTitle">Hora de entrada</label>
+                    <div class="col-md-4">
+                        <select name="hora1" ng-model="horario.horaDesde" class="form-control">
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                        <option value="20:00">20:00</option>
+                        <option value="21:00">21:00</option>
+                        <option value="22:00">22:00</option>
+                        </select>
+                    </div>
+                </div>              
+                
+                <!-- Hora de Salida-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="txtTitle">Hora de salida</label>
+                    <div class="col-md-4">
+                        <select name="hora1" ng-model="horario.horaHasta" class="form-control">
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                        <option value="20:00">20:00</option>
+                        <option value="21:00">21:00</option>
+                        <option value="22:00">22:00</option>
+                        </select>
+                    </div>
+                </div> 
+
+                <!-- Materias-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="txtTitle">Materia</label>
+                    <div class="col-md-4">
+                        <select name="Dias" ng-model="horario.idMateria" class="form-control">
+                                <option ng-repeat="materia in materias" value="{{materia.$id}}">
+                                    {{materia.titulo}}
+                                </option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Profesores-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="txtTitle">Profesor</label>
+                    <div class="col-md-4">
+                        <select name="Dias" ng-model="horario.idProfesor" class="form-control">
+                                <option ng-selected="$first" ng-repeat="profesor in profesores" value="{{profesor.$id}}">{{profesor.nombre +' '+profesor.apellido}}</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton"></label>
+                    <div class="col-md-4">
+                        <input id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit" value="Agregar" ng-disabled="!horario.idMateria || !horario.idProfesor" />
+                    </div>
+                </div>
+ 
+            </fieldset>
+        </form>
+ 
+ 
+    </div>
+    <!-- /.container -->
+ 
+    <div class="blog-footer">
+        <p>App para Luis</p>
+ 
+    </div>
+ 
+</body>
+ 
+</html>

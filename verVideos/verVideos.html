@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+ 
+    <title>Educación a tu nivel</title>
+ 
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="blog.css" rel="stylesheet">
+ 
+</head>
+ 
+<body ng-controller="VerVideosCtrl" ng-cloak class="ng-cloak">
+    <div class="container">
+        <div class="page-header">
+            <h1>Videos</h1>
+        </div>
+        <div class="list-group" ng-repeat="video in videos">
+            <a href="#" onclick="return false;" class="list-group-item active">
+                <h4 class="list-group-item-heading">{{video.titulo}}</h4>
+                <div mi-youtube code="video.urlVideo"></div>
+                
+                <span class="pull-right">
+                    <button class="btn btn-xs btn-warning" ng-click="confirmarBorrado(video.$id)" data-target="#deleteModal">BORRAR</button>
+                </span>
+            </a>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted"></p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="text-align:center;">
+                    <h4 class="modal-title" style="color:red;" id="deleteModalLabel">Está a punto de eliminar un video !! Está seguro?</h4>
+                </div>
+     
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" ng-click="borrarVideo()">Si</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+</body>
+ 
+</html>
