@@ -40,8 +40,16 @@ angular.module('miApp', [
   };
 })
 .controller('PrincipalCtrl', ['$scope','CommonProp', function($scope,CommonProp){
+  debugger;
   CommonProp.setMenuActual(0);
   $scope.actual=CommonProp.getMenuActual();
   $scope.menu=CommonProp.getMenu();
+  $scope.mostrarMenu=function(){
+    return CommonProp.getMostrarMenu();  
+  }
+  $scope.logout = function(){
+      debugger;
+      CommonProp.logoutUser();
+  };
 }])
 ;

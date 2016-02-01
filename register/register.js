@@ -11,9 +11,10 @@ angular.module('miApp.register', ['ngRoute','firebase'])
 }])
  
 // Register controller
-.controller('RegisterCtrl', ['$scope','$location','$firebaseAuth',function($scope,$location,$firebaseAuth) {
+.controller('RegisterCtrl', ['$scope','$location','$firebaseAuth','CommonProp',function($scope,$location,$firebaseAuth,CommonProp) {
     var login={};
     $scope.login=login;
+    CommonProp.setMostrarMenu(false);
 	var firebaseObj = new Firebase("https://tutsplusangular.firebaseio.com"); 
  	var auth = $firebaseAuth(firebaseObj);
  	$scope.signUp = function() {

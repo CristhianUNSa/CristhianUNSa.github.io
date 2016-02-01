@@ -21,6 +21,7 @@ angular.module('miApp.addProfesor', ['ngRoute'])
  
 .controller('AddProfesorCtrl', ['$scope','$firebaseArray','CommonProp','$location','currentAuth', function($scope,$firebaseArray,CommonProp,$location,currentAuth) {
 	//$(".blog-nav-item").removeClass("active");
+	CommonProp.setMostrarMenu(true);
 	CommonProp.setMenuActual(1);
  	$(".menu-inicio").addClass("active");
 	if(!CommonProp.getUser()){

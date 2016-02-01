@@ -21,8 +21,8 @@ angular.module('miApp.verProfesores', ['ngRoute'])
  
 .controller('VerProfesoresCtrl', ['$scope','CommonProp','$firebaseArray','$firebaseObject','$location','currentAuth', function($scope,CommonProp,$firebaseArray,$firebaseObject,$location,currentAuth) {
 	//$(".blog-nav-item").removeClass("active");
+	CommonProp.setMostrarMenu(true);
 	CommonProp.setMenuActual(5);
- 	$(".menu-inicio").addClass("active");
 	$scope.username = CommonProp.getUser();
 	if(!$scope.username){
 	    $location.path('/home');

@@ -21,6 +21,7 @@ angular.module('miApp.AddHorarios', ['ngRoute'])
  
 .controller('AddHorariosCtrl', ['$scope','$firebaseArray','CommonProp','$location','currentAuth', function($scope,$firebaseArray,CommonProp,$location,currentAuth) {
 	//$(".blog-nav-item").removeClass("active");
+	CommonProp.setMostrarMenu(true);
 	CommonProp.setMenuActual(3);
  	$(".menu-inicio").addClass("active");
 	var refProfesores=new Firebase("https://tutsplusangular.firebaseio.com/Profesores");
@@ -52,7 +53,7 @@ angular.module('miApp.AddHorarios', ['ngRoute'])
 		}).then(function(ref){
 			console.log(ref);
 			toastr.success('Se agregó el horario');
-			$location.path("/welcome");
+			$location.path("/verHorarios");
 		},function(error){
 			console.log(error);
 			toastr.error('Ha ocurrido un error. Intente nuevamente');

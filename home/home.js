@@ -14,14 +14,16 @@ angular.module('miApp.home', ['ngRoute','firebase'])
  
 // Home controller
 .controller('HomeCtrl', ['$scope','$location','CommonProp','$firebaseAuth',function($scope,$location,CommonProp,$firebaseAuth) {
-    var login = {};
-    $scope.login=login;
+  debugger;
+  var login = {};
+  $scope.login=login;
+  CommonProp.setMostrarMenu(false);
 	var firebaseObj = new Firebase("https://tutsplusangular.firebaseio.com"); 
  	var loginObj = $firebaseAuth(firebaseObj);
     loginObj.$onAuth(function(authData) {//Si ya se loggeo anteriormente
         if(authData){
             CommonProp.setUser(authData.password.email);
-            $location.path('/welcome');
+            $location.path('/verHorarios');
         }
      });
  	$scope.SignIn = function(event){
@@ -41,7 +43,7 @@ angular.module('miApp.home', ['ngRoute','firebase'])
             // Success callback
             console.log('Authentication successful');
             CommonProp.setUser(user.password.email);//user.password se llama porque usamos el metodo del password de Firebase
-            $location.path('/welcome');
+            $location.path('/verHorarios');
             login.loading = false;
         }, function(error) {
             // Failure callback
@@ -56,10 +58,11 @@ angular.module('miApp.home', ['ngRoute','firebase'])
     var user = '';
     var firebaseObj = new Firebase("https://tutsplusangular.firebaseio.com/");
     var loginObj = $firebaseAuth(firebaseObj);
+    var mostrarMenu = {estado:true};
     //Menu
     var menu=[
         {
-          href:"#/welcome",
+          href:"#/verHorarios",
           titulo:"Inicio",
           path:0,
           active:false
@@ -101,8 +104,8 @@ angular.module('miApp.home', ['ngRoute','firebase'])
           active:false
         },
         {
-          href:"#/verHorarios",
-          titulo:"Ver Horarios",
+          href:"#/welcome",
+          titulo:"Ver Materias",
           path:7,
           active:false
         }
@@ -143,6 +146,13 @@ angular.module('miApp.home', ['ngRoute','firebase'])
                 if(menu[i].active) path=i;
             };
             return path;
+        },
+        setMostrarMenu:function(estado){
+            mostrarMenu.estado=estado;
+            return estado;
+        },
+        getMostrarMenu:function(){
+          return mostrarMenu.estado;
         }
     };
 }])

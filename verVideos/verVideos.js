@@ -20,7 +20,7 @@ angular.module('miApp.verVideos', ['ngRoute'])
 }])
  
 .controller('VerVideosCtrl', ['$scope','CommonProp','$firebaseArray','$firebaseObject','$location','currentAuth', function($scope,CommonProp,$firebaseArray,$firebaseObject,$location,currentAuth) {
-    //$(".blog-nav-item").removeClass("active");
+    CommonProp.setMostrarMenu(true);
     CommonProp.setMenuActual(6);
     $(".menu-inicio").addClass("active");
 	$scope.username = CommonProp.getUser();

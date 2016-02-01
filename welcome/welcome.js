@@ -17,7 +17,8 @@ angular.module('miApp.welcome', ['ngRoute'])
 }])
  
 .controller('WelcomeCtrl', ['$scope','CommonProp','$firebaseArray','$firebaseObject','$location','currentAuth', function($scope,CommonProp,$firebaseArray,$firebaseObject,$location,currentAuth) {
-	CommonProp.setMenuActual(0);
+	CommonProp.setMostrarMenu(true);
+	CommonProp.setMenuActual(7);
 	$scope.username = CommonProp.getUser();
 	if(!$scope.username){
 	    $location.path('/home');

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>      <html lang="en" ng-app="miApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="miApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="miApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="miApp" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
@@ -17,14 +17,14 @@
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body ng-cloak ng-controller="PrincipalCtrl">
-  <div class="blog-masthead">
+  <div class="blog-masthead" ng-show="mostrarMenu()">
         <div class="container" >
             <nav class="blog-nav">
                 <a ng-repeat="item in menu" class="blog-nav-item" href="{{item.href}}"                      ng-class="{'active':item.active}">{{item.titulo}}</a>
                 <a class="blog-nav-item " style="cursor:pointer;" ng-click="logout();">Salir</a>
             </nav>
         </div>
-    </div>
+  </div>
 
   <div ng-view></div>
 

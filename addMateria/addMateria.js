@@ -21,7 +21,7 @@ angular.module('miApp.addMateria', ['ngRoute'])
  
 .controller('AddMateriaCtrl', ['$scope','$firebaseArray','CommonProp','$location','currentAuth', function($scope,$firebaseArray,CommonProp,$location,currentAuth) {
 	//$(".blog-nav-item").removeClass("active");
-	debugger;
+	CommonProp.setMostrarMenu(true);
 	CommonProp.setMenuActual(2);
  	$(".menu-inicio").addClass("active");
 	if(!CommonProp.getUser()){
