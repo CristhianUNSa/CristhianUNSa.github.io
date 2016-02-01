@@ -1,0 +1,62 @@
+<html lang="en">
+ 
+<head>
+ 
+    <title>Mi Perfil</title>
+ 
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="blog.css" rel="stylesheet">
+ 
+ 
+</head>
+ 
+<body ng-controller="VerPerfilCtrl">
+    <div class="container">
+ 
+        <form class="form-horizontal" ng-submit="GuardarPerfil()">
+            <fieldset>
+ 
+                <!-- Form Name -->
+                <legend>Perfil</legend>
+ 
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="nombre">Nombre</label>
+                    <div class="col-md-4">
+                        <input id="nombre" ng-model="usuario.nombre" name="nombre" type="text" placeholder="Nombre" class="form-control input-md">
+ 
+                    </div>
+                </div>
+ 
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="txtPost">Apellido</label>
+                    <div class="col-md-4">
+                        <textarea ng-model="usuario.apellido" class="form-control" id="txtPost" name="txtPost"></textarea>
+                    </div>
+                </div>
+ 
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton"></label>
+                    <div class="col-md-4">
+                        <input id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit" value="Guardar" />
+                    </div>
+                </div>
+ 
+            </fieldset>
+        </form>
+ 
+ 
+    </div>
+    <!-- /.container -->
+ 
+    <div class="blog-footer">
+        <p>App para Luis</p>
+ 
+    </div>
+ 
+</body>
+ 
+</html>

@@ -13,8 +13,7 @@ angular.module('miApp.home', ['ngRoute','firebase'])
 }])
  
 // Home controller
-.controller('HomeCtrl', ['$scope','$location','CommonProp','$firebaseAuth',function($scope,$location,CommonProp,$firebaseAuth) {
-  debugger;
+.controller('HomeCtrl', ['$scope','$location','CommonProp','$firebaseAuth','$firebaseObject',function($scope,$location,CommonProp,$firebaseAuth,$firebaseObject) {
   var login = {};
   $scope.login=login;
   CommonProp.setMostrarMenu(false);
@@ -27,6 +26,7 @@ angular.module('miApp.home', ['ngRoute','firebase'])
         }
      });
  	$scope.SignIn = function(event){
+    debugger;
  		event.preventDefault();
         login.loading = true;
  		var username= $scope.user.email;
@@ -41,10 +41,25 @@ angular.module('miApp.home', ['ngRoute','firebase'])
         })
         .then(function(user) {
             // Success callback
-            console.log('Authentication successful');
             CommonProp.setUser(user.password.email);//user.password se llama porque usamos el metodo del password de Firebase
-            $location.path('/verHorarios');
-            login.loading = false;
+            CommonProp.setUserId(user.uid); //el id del usuario
+            var ref=new Firebase("https://tutsplusangular.firebaseio.com/Perfiles/"+user.uid);
+            var perfil=$firebaseObject(ref);
+            perfil.$loaded()
+              .then(function(objPerfil){
+                  console.log("Entro a escribir nombre y apellido");
+                  var nombre=objPerfil.nombre;
+                  var apellido=objPerfil.apellido;
+                  CommonProp.setNombreApellido(nombre,apellido);
+                  $location.path('/verHorarios');
+                  login.loading = false;
+              })
+              .catch(function(error){
+                console.log("Entro a un error: "+error);
+                $location.path('/verHorarios');
+                login.loading = false;
+              });
+            
         }, function(error) {
             // Failure callback
             console.log('Authentication failure');
@@ -56,10 +71,14 @@ angular.module('miApp.home', ['ngRoute','firebase'])
 .service('CommonProp',['$firebaseAuth','$location' ,function($firebaseAuth,$location) {//usado para mantener información de loggeo
     //Usuario
     var user = '';
+    var userId='';
+    var nombre= '';
+    var apellido = '';
     var firebaseObj = new Firebase("https://tutsplusangular.firebaseio.com/");
     var loginObj = $firebaseAuth(firebaseObj);
-    var mostrarMenu = {estado:true};
+
     //Menu
+    var mostrarMenu = {estado:true};
     var menu=[
         {
           href:"#/verHorarios",
@@ -108,6 +127,12 @@ angular.module('miApp.home', ['ngRoute','firebase'])
           titulo:"Ver Materias",
           path:7,
           active:false
+        },
+        {
+          href:"#/verPerfil",
+          titulo:"Mi perfil",
+          path:8,
+          active:false
         }
     ];
     var itemActual=0;
@@ -122,12 +147,43 @@ angular.module('miApp.home', ['ngRoute','firebase'])
             localStorage.setItem("userEmail",value);
             user = value;
         },
+        getUserId: function() {
+            if(userId==''){
+                userId=localStorage.getItem("userId");
+            }
+            return userId;
+        },
+        setUserId: function(value) {
+            localStorage.setItem("userId",value);
+            userId = value;
+        },
         logoutUser:function(){
             loginObj.$unauth();
             user='';
+            nombre='';
+            apellido='';
             localStorage.removeItem("userEmail");
+            localStorage.removeItem("nombre");
+            localStorage.removeItem("apellido");
             toastr.warning('Se ha desloggeado con éxito');
             $location.path('/home');
+        },
+        setNombreApellido:function(nombre,apellido){
+            this.nombre=nombre;
+            this.apellido=apellido;
+            localStorage.setItem("nombre",nombre);
+            localStorage.setItem("apellido",apellido);
+        },
+        getNombreCompleto:function(){
+            if(this.nombre ==''){
+                nombre=localStorage.getItem("nombre")
+            }
+            if(this.apellido ==''){
+                apellido=localStorage.getItem("apellido")
+            }
+            if(nombre==null) nombre = '';
+            if(apellido==null) apellido = '';
+            return nombre + ' ' + apellido;
         },
         getMenu:function(){
             return menu;

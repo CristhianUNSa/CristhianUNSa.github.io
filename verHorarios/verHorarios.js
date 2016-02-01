@@ -5,7 +5,8 @@
 angular.module('miApp.verHorarios', ['ngRoute'])
  
 .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/verHorarios', {
+    $routeProvider
+    .when('/verHorarios', {
         templateUrl: 'verHorarios/verHorarios.html',
         controller: 'VerHorariosCtrl',
         resolve: {
@@ -20,12 +21,13 @@ angular.module('miApp.verHorarios', ['ngRoute'])
 }])
  
 .controller('VerHorariosCtrl', ['$scope','CommonProp','$firebaseArray','$firebaseObject','$location','currentAuth', function($scope,CommonProp,$firebaseArray,$firebaseObject,$location,currentAuth) {
+    console.log("Entro a verHorariosCtrl");
     CommonProp.setMostrarMenu(true);
     CommonProp.setMenuActual(0);
-	$scope.username = CommonProp.getUser();
-	if(!$scope.username){
+	if(!CommonProp.getUser()){
 	    $location.path('/home');
 	}
+    $scope.username = CommonProp.getNombreCompleto()==" " ? CommonProp.getUser() : CommonProp.getNombreCompleto()
     $scope.arrayLunes=[];
     $scope.arrayMartes=[];
     $scope.arrayMiercoles=[];

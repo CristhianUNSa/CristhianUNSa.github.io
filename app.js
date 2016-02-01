@@ -11,7 +11,8 @@ angular.module('miApp', [
   'miApp.AddHorarios',
   'miApp.addVideo',
   'miApp.verVideos',
-  'miApp.verHorarios'
+  'miApp.verHorarios',
+  'miApp.verPerfil'
 ])
 .factory("Auth", ["$firebaseAuth",
   function($firebaseAuth) {
@@ -40,7 +41,6 @@ angular.module('miApp', [
   };
 })
 .controller('PrincipalCtrl', ['$scope','CommonProp', function($scope,CommonProp){
-  debugger;
   CommonProp.setMenuActual(0);
   $scope.actual=CommonProp.getMenuActual();
   $scope.menu=CommonProp.getMenu();
@@ -48,7 +48,6 @@ angular.module('miApp', [
     return CommonProp.getMostrarMenu();  
   }
   $scope.logout = function(){
-      debugger;
       CommonProp.logoutUser();
   };
 }])

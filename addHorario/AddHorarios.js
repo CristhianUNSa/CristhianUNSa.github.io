@@ -32,7 +32,6 @@ angular.module('miApp.AddHorarios', ['ngRoute'])
 		$location.path('/home');
 	}
 	$scope.AgregarHorarios=function(){
-		debugger;
 		var dia=$scope.horario.dia;
 		var horaDesde=$scope.horario.horaDesde;
 		var horaHasta=$scope.horario.horaHasta;

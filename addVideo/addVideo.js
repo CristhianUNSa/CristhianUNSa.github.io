@@ -12,7 +12,6 @@ angular.module('miApp.addVideo', ['ngRoute'])
             // controller will not be loaded until $waitForAuth resolves
             // Auth refers to our $firebaseAuth wrapper in the example above
             "currentAuth": ["Auth", function(Auth) {
-              debugger;
               // $waitForAuth returns a promise so the resolve waits for it to complete
               return Auth.$waitForAuth();
             }]
@@ -37,7 +36,6 @@ angular.module('miApp.addVideo', ['ngRoute'])
 		fb.$add({
 			titulo:titulo,
 			urlVideo:urlVideo,
-			123:123,
 			email:email,
 			'.priority': email
 		}).then(function(ref){
