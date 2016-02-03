@@ -17,7 +17,12 @@
         <div class="page-header">
             <h1>Horarios</h1>
         </div>
-        <p class="lead">Bienvenido <b>{{username}}</b> !! Considere por favor actualizar su <a href="#/verPerfil">perfil</a></p>
+        <p class="lead">Bienvenido <b>{{username}}!</b>
+            <span ng-if="!tienePerfil"> 
+                Considere por favor actualizar su <a href="#/verPerfil">perfil</a>
+            </span>
+            Seleccione la materia a la que desea inscribirse
+        </p>
         <!-- Panel Lunes -->
         <div class="panel panel-primary" ng-if="arrayLunes.length>0">
             <div class="panel-heading">
@@ -25,16 +30,8 @@
             </div>
             <div class="panel-body">
                 <!--Contenido aquí-->
-                <div class="list-group" ng-repeat="horario in arrayLunes">
-                    <a href="#" onclick="return false;" class="list-group-item active">
-                        <h4 class="list-group-item-heading">{{horario.materia}}</h4>
-                        <p class="list-group-item-text">{{horario.horaDesde}} - {{horario.horaHasta}}</p>
-                        <p class="list-group-item-text">{{horario.profesor}}</p>
-                        <span class="pull-right">
-                            <button class="btn btn-xs btn-info" ng-click="editarhorario(horario.$id)" data-target="#editModal">EDITAR</button>
-                            <button class="btn btn-xs btn-warning" ng-click="confirmarBorrado(horario.$id)" data-target="#deleteModal">BORRAR</button>
-                        </span>
-                    </a>
+                <div class="list-group" ng-repeat="horario in arrayLunes" >
+                    <horarios horario="horario" borrarHorario="borrarHorario()"></horarios>
                 </div>
             </div>
         </div>
@@ -48,15 +45,7 @@
             <div class="panel-body">
                 <!--Contenido aquí-->
                 <div class="list-group" ng-repeat="horario in arrayMartes">
-                    <a href="#" onclick="return false;" class="list-group-item active">
-                        <h4 class="list-group-item-heading">{{horario.materia}}</h4>
-                        <p class="list-group-item-text">{{horario.horaDesde}} - {{horario.horaHasta}}</p>
-                        <p class="list-group-item-text">{{horario.profesor}}</p>
-                        <span class="pull-right">
-                            <button class="btn btn-xs btn-info" ng-click="editarhorario(horario.$id)" data-target="#editModal">EDITAR</button>
-                            <button class="btn btn-xs btn-warning" ng-click="confirmarBorrado(horario.$id)" data-target="#deleteModal">BORRAR</button>
-                        </span>
-                    </a>
+                    <horarios horario="horario"></horarios>
                 </div>
             </div>
         </div>
@@ -70,15 +59,7 @@
             <div class="panel-body">
                 <!--Contenido aquí-->
                 <div class="list-group" ng-repeat="horario in arrayMiercoles">
-                    <a href="#" onclick="return false;" class="list-group-item active">
-                        <h4 class="list-group-item-heading">{{horario.materia}}</h4>
-                        <p class="list-group-item-text">{{horario.horaDesde}} - {{horario.horaHasta}}</p>
-                        <p class="list-group-item-text">{{horario.profesor}}</p>
-                        <span class="pull-right">
-                            <button class="btn btn-xs btn-info" ng-click="editarhorario(horario.$id)" data-target="#editModal">EDITAR</button>
-                            <button class="btn btn-xs btn-warning" ng-click="confirmarBorrado(horario.$id)" data-target="#deleteModal">BORRAR</button>
-                        </span>
-                    </a>
+                    <horarios horario="horario"></horarios>
                 </div>
             </div>
         </div>
@@ -92,15 +73,7 @@
             <div class="panel-body">
                 <!--Contenido aquí-->
                 <div class="list-group" ng-repeat="horario in arrayJueves">
-                    <a href="#" onclick="return false;" class="list-group-item active">
-                        <h4 class="list-group-item-heading">{{horario.materia}}</h4>
-                        <p class="list-group-item-text">{{horario.horaDesde}} - {{horario.horaHasta}}</p>
-                        <p class="list-group-item-text">{{horario.profesor}}</p>
-                        <span class="pull-right">
-                            <button class="btn btn-xs btn-info" ng-click="editarhorario(horario.$id)" data-target="#editModal">EDITAR</button>
-                            <button class="btn btn-xs btn-warning" ng-click="confirmarBorrado(horario.$id)" data-target="#deleteModal">BORRAR</button>
-                        </span>
-                    </a>
+                   <horarios horario="horario"></horarios>
                 </div>
             </div>
         </div>
@@ -114,15 +87,7 @@
             <div class="panel-body">
                 <!--Contenido aquí-->
                 <div class="list-group" ng-repeat="horario in arrayViernes">
-                    <a href="#" onclick="return false;" class="list-group-item active">
-                        <h4 class="list-group-item-heading">{{horario.materia}}</h4>
-                        <p class="list-group-item-text">{{horario.horaDesde}} - {{horario.horaHasta}}</p>
-                        <p class="list-group-item-text">{{horario.profesor}}</p>
-                        <span class="pull-right">
-                            <button class="btn btn-xs btn-info" ng-click="editarhorario(horario.$id)" data-target="#editModal">EDITAR</button>
-                            <button class="btn btn-xs btn-warning" ng-click="confirmarBorrado(horario.$id)" data-target="#deleteModal">BORRAR</button>
-                        </span>
-                    </a>
+                    <horarios horario="horario"></horarios>
                 </div>
             </div>
         </div>

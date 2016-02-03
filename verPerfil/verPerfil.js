@@ -16,7 +16,7 @@ angular.module('miApp.verPerfil', ['ngRoute'])
     })
 }])
  
-.controller('VerPerfilCtrl', ['$scope','CommonProp','Perfil','$firebaseObject','$location','currentAuth', function($scope,CommonProp,Perfil,$firebaseObject,$location,currentAuth) {
+.controller('VerPerfilCtrl', ['$scope','CommonProp','Perfil','$location','currentAuth', function($scope,CommonProp,Perfil,$location,currentAuth) {
     CommonProp.setMostrarMenu(true);
     CommonProp.setMenuActual(8);
     var userId = CommonProp.getUserId();
@@ -33,11 +33,11 @@ angular.module('miApp.verPerfil', ['ngRoute'])
         $scope.usuario.$save()
             .then(function(){
                 toastr.success("Perfil guardado con éxito! ");
-
+                CommonProp.setNombreApellido($scope.usuario.nombre,$scope.usuario.apellido);
                 $location.path('/verHorarios');
             })
             .catch(function(error){
-                toastr.error("El perfil no se pudo guardar.Intente Salir, entrar y corregir sus datos en Mi Perfil");
+                toastr.error("El perfil no se pudo guardar.Intente loggearse nuevamente y corregir sus datos en Mi Perfil");
                 console.log(error);
             });
     }

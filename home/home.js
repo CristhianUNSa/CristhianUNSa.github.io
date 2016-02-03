@@ -177,7 +177,6 @@ angular.module('miApp.home', ['ngRoute','firebase'])
             localStorage.setItem("apellido",apellido);
         },
         getNombreCompleto:function(){
-          debugger;
             if(nombre ==''){
                 nombre=localStorage.getItem("nombre")
             }

@@ -1,0 +1,10 @@
+<div ng-click="anotarHorario(horario.id)">
+	<div class="list-group-item active"> 
+		<h4 class="list-group-item-heading">{{horario.materia}}</h4> 
+		<p class="list-group-item-text"> {{horario.horaDesde}} - {{horario.horaHasta}} </p> 
+		<p class="list-group-item-text">{{horario.profesor}}-{{horario.$id}}</p> 
+		<span class="pull-right"> 
+			<button class="btn btn-xs btn-warning" ng-click="confirmarBorrado(horario.id,$event);" data-target="#deleteModal">BORRAR</button> 
+		</span> 
+	</div>
+</div>

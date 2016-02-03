@@ -21,14 +21,13 @@ angular.module('miApp.verHorarios', ['ngRoute'])
 }])
  
 .controller('VerHorariosCtrl', ['$scope','CommonProp','$firebaseArray','$firebaseObject','$location','currentAuth', function($scope,CommonProp,$firebaseArray,$firebaseObject,$location,currentAuth) {
-    console.log("Entro a verHorariosCtrl");
-    debugger;
     CommonProp.setMostrarMenu(true);
     CommonProp.setMenuActual(0);
 	if(!CommonProp.getUser()){
 	    $location.path('/home');
 	}
-    $scope.username = CommonProp.getNombreCompleto()==" " ? CommonProp.getUser() : CommonProp.getNombreCompleto()
+    $scope.username = CommonProp.getNombreCompleto()==" " ? CommonProp.getUser() : CommonProp.getNombreCompleto();
+    $scope.tienePerfil = CommonProp.getNombreCompleto()==" " ? false : true;
     $scope.arrayLunes=[];
     $scope.arrayMartes=[];
     $scope.arrayMiercoles=[];
@@ -46,12 +45,14 @@ angular.module('miApp.verHorarios', ['ngRoute'])
                     $scope.$evalAsync(function(){
                         profesor=profesorObj.val();
                         var nombrecompleto = profesor.apellido + ' ' + profesor.nombre;
+                        debugger;
                         var oHorario={
                                 horaDesde:objHorario.val().horaDesde,
                                 horaHasta:objHorario.val().horaHasta,
                                 dia:objHorario.val().dia,
                                 materia: materia.titulo,
-                                profesor: nombrecompleto
+                                profesor: nombrecompleto,
+                                id:objHorario.$id
                             };
                         switch (oHorario.dia){
                             case "Lunes":
@@ -81,7 +82,8 @@ angular.module('miApp.verHorarios', ['ngRoute'])
         });
         
     });
-	$scope.confirmarBorrado=function(id){
+	$scope.confirmarBorrado=function(id,evento){
+        evento.stopPropagation();
 		var fb= new Firebase("https://tutsplusangular.firebaseio.com/Horarios/"+id);
 		$scope.horarioABorrar=$firebaseObject(fb);
 		$('#deleteModal').modal();
@@ -98,7 +100,24 @@ angular.module('miApp.verHorarios', ['ngRoute'])
         	}
         });
     };
+    
     $scope.logout = function(){
 	    CommonProp.logoutUser();
 	};
-}]);
+}])
+.directive('horarios',function(){
+    return {
+        restrict: 'EA',
+        scope: { 
+            horario: '=' ,
+            borrarHorario: '&'
+        },
+        templateUrl: 'verHorarios/templateHorario.html',
+        link: function($scope,element,attrs){
+            $scope.anotarHorario=function(horarioId){
+                debugger;
+                console.log(horarioId);
+            };
+        }
+    };
+});
