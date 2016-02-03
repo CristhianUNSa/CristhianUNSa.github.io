@@ -16,17 +16,17 @@ angular.module('miApp.home', ['ngRoute','firebase'])
 .controller('HomeCtrl', ['$scope','$location','CommonProp','$firebaseAuth','$firebaseObject',function($scope,$location,CommonProp,$firebaseAuth,$firebaseObject) {
   var login = {};
   $scope.login=login;
+  $scope.bHayDatosNombre=false;
   CommonProp.setMostrarMenu(false);
 	var firebaseObj = new Firebase("https://tutsplusangular.firebaseio.com"); 
  	var loginObj = $firebaseAuth(firebaseObj);
     loginObj.$onAuth(function(authData) {//Si ya se loggeo anteriormente
-        if(authData){
+        if(authData && $scope.bHayDatosNombre){
             CommonProp.setUser(authData.password.email);
             $location.path('/verHorarios');
         }
      });
  	$scope.SignIn = function(event){
-    debugger;
  		event.preventDefault();
         login.loading = true;
  		var username= $scope.user.email;
@@ -51,18 +51,20 @@ angular.module('miApp.home', ['ngRoute','firebase'])
                   var nombre=objPerfil.nombre;
                   var apellido=objPerfil.apellido;
                   CommonProp.setNombreApellido(nombre,apellido);
+                  $scope.bHayDatosNombre=true;
                   $location.path('/verHorarios');
                   login.loading = false;
               })
               .catch(function(error){
                 console.log("Entro a un error: "+error);
+                $scope.bHayDatosNombre=true;
                 $location.path('/verHorarios');
                 login.loading = false;
               });
             
         }, function(error) {
             // Failure callback
-            console.log('Authentication failure');
+            console.log('La Autenticación falló');
             toastr.error('Ha proporcionado datos incorrectos');
             login.loading = false;
         });
@@ -168,17 +170,18 @@ angular.module('miApp.home', ['ngRoute','firebase'])
             toastr.warning('Se ha desloggeado con éxito');
             $location.path('/home');
         },
-        setNombreApellido:function(nombre,apellido){
-            this.nombre=nombre;
-            this.apellido=apellido;
+        setNombreApellido:function(nombreP,apellidoP){
+            nombre=nombreP;
+            apellido=apellidoP;
             localStorage.setItem("nombre",nombre);
             localStorage.setItem("apellido",apellido);
         },
         getNombreCompleto:function(){
-            if(this.nombre ==''){
+          debugger;
+            if(nombre ==''){
                 nombre=localStorage.getItem("nombre")
             }
-            if(this.apellido ==''){
+            if(apellido ==''){
                 apellido=localStorage.getItem("apellido")
             }
             if(nombre==null) nombre = '';

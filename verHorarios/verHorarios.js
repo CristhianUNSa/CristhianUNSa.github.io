@@ -22,6 +22,7 @@ angular.module('miApp.verHorarios', ['ngRoute'])
  
 .controller('VerHorariosCtrl', ['$scope','CommonProp','$firebaseArray','$firebaseObject','$location','currentAuth', function($scope,CommonProp,$firebaseArray,$firebaseObject,$location,currentAuth) {
     console.log("Entro a verHorariosCtrl");
+    debugger;
     CommonProp.setMostrarMenu(true);
     CommonProp.setMenuActual(0);
 	if(!CommonProp.getUser()){
