@@ -135,6 +135,12 @@ angular.module('miApp.home', ['ngRoute','firebase'])
           titulo:"Mi perfil",
           path:8,
           active:false
+        },
+        {
+          href:"#/verMisHorarios",
+          titulo:"Mis Horarios",
+          path:9,
+          active:false
         }
     ];
     var itemActual=0;

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+ 
+    <title>Educación a tu nivel</title>
+ 
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="blog.css" rel="stylesheet">
+ 
+</head>
+ 
+<body ng-controller="VerMisHorariosCtrl">
+    <div class="container">
+        <div class="page-header">
+            <h1>Mis Horarios</h1>
+        </div>
+        <!-- Panel Lunes -->
+        <div class="panel panel-primary" ng-if="arrayLunes.length>0">
+            <div class="panel-heading">
+                <h3 class="panel-title">Lunes</h3>
+            </div>
+            <div class="panel-body">
+                <!--Contenido aquí-->
+                <div class="list-group" ng-repeat="horario in arrayLunes" >
+                    <mi-horario horario="horario" borrarHorario="borrarHorario()"></mi-horario>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Panel Lunes -->
+
+        <!-- Panel Martes -->
+        <div class="panel panel-primary" ng-if="arrayMartes.length>0">
+            <div class="panel-heading">
+                <h3 class="panel-title">Martes</h3>
+            </div>
+            <div class="panel-body">
+                <!--Contenido aquí-->
+                <div class="list-group" ng-repeat="horario in arrayMartes">
+                    <mi-horario horario="horario"></mi-horario>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Panel Martes -->
+
+        <!-- Panel Miercoles -->
+        <div class="panel panel-primary" ng-if="arrayMiercoles.length>0">
+            <div class="panel-heading">
+                <h3 class="panel-title">Miercoles</h3>
+            </div>
+            <div class="panel-body">
+                <!--Contenido aquí-->
+                <div class="list-group" ng-repeat="horario in arrayMiercoles">
+                    <mi-horario horario="horario"></mi-horario>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Panel Miercoles -->
+
+        <!-- Panel Jueves -->
+        <div class="panel panel-primary" ng-if="arrayJueves.length>0">
+            <div class="panel-heading">
+                <h3 class="panel-title">Jueves</h3>
+            </div>
+            <div class="panel-body">
+                <!--Contenido aquí-->
+                <div class="list-group" ng-repeat="horario in arrayJueves">
+                   <mi-horario horario="horario"></mi-horario>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Panel Jueves -->
+
+        <!-- Panel Viernes -->
+        <div class="panel panel-primary" ng-if="arrayViernes.length>0">
+            <div class="panel-heading">
+                <h3 class="panel-title">Viernes</h3>
+            </div>
+            <div class="panel-body">
+                <!--Contenido aquí-->
+                <div class="list-group" ng-repeat="horario in arrayViernes">
+                    <mi-horario horario="horario"></mi-horario>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Panel Viernes -->
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted"></p>
+        </div>
+    </footer>
+</body>
+ 
+</html>

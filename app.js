@@ -12,7 +12,8 @@ angular.module('miApp', [
   'miApp.addVideo',
   'miApp.verVideos',
   'miApp.verHorarios',
-  'miApp.verPerfil'
+  'miApp.verPerfil',
+  'miApp.verMisHorarios'
 ])
 .factory("Auth", ["$firebaseAuth",
   function($firebaseAuth) {
