@@ -1,14 +1,11 @@
 'use strict';
- $(function(){
- 	$(".menu-ver-horarios").addClass("active");
- });
-angular.module('miApp.verHorarios', ['ngRoute'])
+angular.module('miApp.verMisHorarios', ['ngRoute'])
  
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-    .when('/verHorarios', {
-        templateUrl: 'verHorarios/verHorarios.html',
-        controller: 'VerHorariosCtrl',
+    .when('/verMisHorarios', {
+        templateUrl: 'verMisHorarios/verMisHorarios.html',
+        controller: 'VerMisHorariosCtrl',
         resolve: {
             // controller will not be loaded until $waitForAuth resolves
             // Auth refers to our $firebaseAuth wrapper in the example above
@@ -20,9 +17,9 @@ angular.module('miApp.verHorarios', ['ngRoute'])
     });
 }])
  
-.controller('VerHorariosCtrl', ['$scope','CommonProp','$firebaseArray','$firebaseObject','$location','currentAuth', function($scope,CommonProp,$firebaseArray,$firebaseObject,$location,currentAuth) {
+.controller('VerMisHorariosCtrl', ['$scope','CommonProp','$firebaseArray','$firebaseObject','$location','currentAuth', function($scope,CommonProp,$firebaseArray,$firebaseObject,$location,currentAuth) {
     CommonProp.setMostrarMenu(true);
-    CommonProp.setMenuActual(0);
+    CommonProp.setMenuActual(10);
 	if(!CommonProp.getUser()){
 	    $location.path('/home');
 	}
@@ -40,7 +37,7 @@ angular.module('miApp.verHorarios', ['ngRoute'])
     $scope.arrayMiercoles=[];
     $scope.arrayJueves=[];
     $scope.arrayViernes=[];
-	var horarios=new Firebase("https://tutsplusangular.firebaseio.com/Horarios");
+	var horarios=new Firebase("https://tutsplusangular.firebaseio.com/Perfiles/"+CommonProp.getUserId()+"/Horarios");
     horarios.on('child_added',function(objHorario){
         debugger;
         var materia=Object.keys(objHorario.val().materia)[0];
